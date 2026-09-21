@@ -7,7 +7,35 @@ repo and shows:
 - Push/commit activity per branch, as a line graph
 - Full file tree of the default branch
 
-## Setup
+## Deploying (Render, free tier)
+
+1. **Push this project to GitHub** (if it isn't already):
+   ```bash
+   cd repo-analyzer
+   git init
+   git add .
+   git commit -m "repo analyzer"
+   git branch -M main
+   git remote add origin https://github.com/<you>/repo-analyzer.git
+   git push -u origin main
+   ```
+2. Go to **render.com** → sign up/log in with GitHub (no card needed for free tier).
+3. **New +** → **Web Service** → pick your `repo-analyzer` repo.
+4. Render should auto-detect the settings from `render.yaml`, or set manually:
+   - **Build command**: `pip install -r requirements.txt`
+   - **Start command**: `gunicorn app:app`
+   - **Plan**: Free
+5. Click **Create Web Service**. First deploy takes a few minutes; you'll get
+   a live URL like `https://repo-analyzer-xxxx.onrender.com`.
+
+Notes:
+- Free-tier services spin down after 15 min of no traffic and take ~30–50s
+  to wake back up on the next request — fine for a college demo, just don't
+  be alarmed if the first load is slow.
+- If GitHub rate-limits your live app (shared IPs on Render can trip this
+  faster), point people to the token field on the home page.
+
+## Setup (local)
 
 ```bash
 cd repo-analyzer
