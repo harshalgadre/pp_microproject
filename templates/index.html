@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>Peek inside any GitHub repo</h1>
+  <p class="sub">Enter a repo — get its story, contributors, branch push activity, and file tree.</p>
+
+  <form action="{{ url_for('analyze') }}" method="post" class="analyze-form">
+    <input
+      type="text"
+      name="repo_url"
+      placeholder="e.g. torvalds/linux  or  https://github.com/psf/requests"
+      required
+    >
+    <details class="token-box">
+      <summary>Optional: GitHub token (avoids rate limits)</summary>
+      <input type="password" name="token" placeholder="ghp_xxxxxxxxxxxx">
+      <p class="hint">Never stored — used only for this request.</p>
+    </details>
+    <button type="submit">Analyze repo →</button>
+  </form>
+</section>
+{% endblock %}

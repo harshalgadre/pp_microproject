@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block title %}{{ info.full_name }} · Repo Analyzer{% endblock %}
+
+{% macro render_tree(node) %}
+  <ul class="tree">
+    {% for key in node.keys() if key != '__files__' %}
+      <li>
+        <span class="folder">📁 {{ key }}</span>
+        {{ render_tree(node[key]) }}
+      </li>
+    {% endfor %}
+    {% for f in node.get('__files__', []) | sort %}
+      <li><span class="file">📄 {{ f }}</span></li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
+{% block content %}
+
+<a href="{{ url_for('index') }}" class="back-link">← analyze another repo</a>
+
+<section class="repo-card">
+  <img class="avatar" src="{{ info.owner_avatar }}" alt="{{ info.owner }}">
+  <div>
+    <h1><a href="{{ info.html_url }}" target="_blank">{{ info.full_name }}</a></h1>
+    <p class="desc">{{ info.description }}</p>
+    <div class="badges">
+      <span>⭐ {{ info.stars }} stars</span>
+      <span>🍴 {{ info.forks }} forks</span>
+      <span>🐞 {{ info.open_issues }} open issues</span>
+      {% if info.language %}<span>💻 {{ info.language }}</span>{% endif %}
+      <span>📜 {{ info.license }}</span>
+      <span>🌿 default: {{ info.default_branch }}</span>
+      <span>🗓️ created {{ info.created_at }}</span>
+      <span>🔄 updated {{ info.updated_at }}</span>
+    </div>
+  </div>
+</section>
+
+<section class="panel">
+  <h2>👥 Contributors ({{ contributors|length }})</h2>
+  {% if contributor_graph %}
+    <img class="graph" src="data:image/png;base64,{{ contributor_graph }}" alt="contributors graph">
+  {% endif %}
+  <div class="contributor-grid">
+    {% for c in contributors %}
+      <a class="contributor" href="{{ c.html_url }}" target="_blank">
+        <img src="{{ c.avatar_url }}" alt="{{ c.login }}">
+        <span>{{ c.login }}</span>
+        <small>{{ c.contributions }} commits</small>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+<section class="panel">
+  <h2>📈 Push activity across branches</h2>
+  <p class="hint">Showing the first {{ branch_commit_counts|length }} of {{ branches|length }} branches (rate-limit friendly).</p>
+  <img class="graph" src="data:image/png;base64,{{ commit_graph }}" alt="commit activity graph">
+  <ul class="branch-list">
+    {% for b in branches %}
+      <li>
+        🌿 {{ b }}
+        {% if b in branch_commit_counts %}
+          <span class="count">— {{ branch_commit_counts[b] }} recent commits fetched</span>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="panel">
+  <h2>🗂️ File system ({{ info.default_branch }})</h2>
+  {% if file_tree %}
+    {{ render_tree(file_tree) }}
+  {% else %}
+    <p>Couldn't load the file tree for this repo.</p>
+  {% endif %}
+</section>
+
+{% endblock %}

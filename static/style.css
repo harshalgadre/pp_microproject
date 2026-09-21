@@ -1,0 +1,135 @@
+* { box-sizing: border-box; }
+
+body {
+  font-family: 'Patrick Hand', cursive;
+  background: #fdf6ec;
+  color: #2b2b2b;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.topbar {
+  padding: 16px 24px;
+  border-bottom: 3px dashed #2b2b2b;
+  background: #fff9f0;
+}
+.logo {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1.4rem;
+  text-decoration: none;
+  color: #2b2b2b;
+}
+
+.container { max-width: 900px; margin: 0 auto; padding: 24px 16px 60px; }
+
+.flash-box {
+  max-width: 900px;
+  margin: 12px auto 0;
+  padding: 10px 16px;
+  border: 2px dashed #c0392b;
+  background: #fff0ee;
+  border-radius: 10px;
+}
+
+/* ---------- landing page ---------- */
+.hero { text-align: center; padding: 40px 0; }
+.hero h1 { font-family: 'Architects Daughter', cursive; font-size: 2.1rem; margin-bottom: 6px; }
+.sub { color: #555; margin-bottom: 28px; }
+
+.analyze-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  max-width: 520px;
+  margin: 0 auto;
+}
+.analyze-form input[type="text"],
+.analyze-form input[type="password"] {
+  font-family: inherit;
+  font-size: 1.05rem;
+  padding: 12px 14px;
+  border: 2.5px solid #2b2b2b;
+  border-radius: 12px;
+  background: #fffefb;
+}
+.analyze-form button {
+  font-family: 'Architects Daughter', cursive;
+  font-size: 1.1rem;
+  padding: 12px;
+  border: 2.5px solid #2b2b2b;
+  border-radius: 12px;
+  background: #ffd166;
+  cursor: pointer;
+  box-shadow: 3px 3px 0 #2b2b2b;
+  transition: transform .1s;
+}
+.analyze-form button:hover { transform: translate(-2px, -2px); box-shadow: 5px 5px 0 #2b2b2b; }
+.token-box { text-align: left; font-size: .9rem; }
+.hint { color: #777; font-size: .82rem; margin: 4px 0 0; }
+
+/* ---------- result page ---------- */
+.back-link { display: inline-block; margin-bottom: 16px; color: #2b2b2b; text-decoration: none; border-bottom: 2px dashed #2b2b2b; }
+
+.repo-card {
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  padding: 20px;
+  border: 2.5px solid #2b2b2b;
+  border-radius: 16px;
+  background: #fff9f0;
+  box-shadow: 4px 4px 0 #2b2b2b;
+  margin-bottom: 28px;
+}
+.repo-card .avatar { width: 72px; height: 72px; border-radius: 50%; border: 2.5px solid #2b2b2b; }
+.repo-card h1 { font-family: 'Architects Daughter', cursive; font-size: 1.4rem; margin: 0 0 6px; }
+.repo-card h1 a { color: #2b2b2b; text-decoration: none; }
+.desc { margin: 0 0 10px; color: #444; }
+.badges { display: flex; flex-wrap: wrap; gap: 8px; }
+.badges span {
+  font-size: .85rem;
+  padding: 4px 10px;
+  border: 1.5px dashed #2b2b2b;
+  border-radius: 20px;
+  background: #fffefb;
+}
+
+.panel {
+  border: 2.5px solid #2b2b2b;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 26px;
+  background: #fffefb;
+  box-shadow: 4px 4px 0 #2b2b2b;
+}
+.panel h2 { font-family: 'Architects Daughter', cursive; margin-top: 0; }
+
+.graph { width: 100%; border-radius: 10px; border: 1.5px solid #ddd; margin: 10px 0 16px; }
+
+.contributor-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(90px, 1fr));
+  gap: 14px;
+  margin-top: 10px;
+}
+.contributor {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  text-decoration: none;
+  color: #2b2b2b;
+  font-size: .85rem;
+}
+.contributor img { width: 48px; height: 48px; border-radius: 50%; border: 2px solid #2b2b2b; margin-bottom: 4px; }
+.contributor small { color: #777; }
+
+.branch-list { list-style: none; padding: 0; margin: 0; }
+.branch-list li { padding: 6px 0; border-bottom: 1px dashed #ccc; }
+.branch-list .count { color: #777; font-size: .85rem; }
+
+.tree { list-style: none; padding-left: 18px; margin: 4px 0; }
+.tree .folder { font-weight: bold; }
+.tree .file { color: #444; }
+
+.footer { text-align: center; color: #999; font-size: .85rem; padding: 20px; }
