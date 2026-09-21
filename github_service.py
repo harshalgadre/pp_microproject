@@ -7,7 +7,7 @@ app.py stays readable.
 from typing import Optional
 import requests
 
-GITHUB_API = "https://api.github.com"
+GITHUB_API = "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"
 
 
 class GitHubService:
